@@ -81,5 +81,7 @@ bool VlcBackend::isPlaying() {
 
 void VlcBackend::onTrackEndedCallback(const libvlc_event_t *, void *userData) {
     VlcBackend *self = static_cast<VlcBackend*>(userData);
-    QMetaObject::invokeMethod(self, "trackEnded", Qt::QueuedConnection);
+    QMetaObject::invokeMethod(self, [self]() {
+        emit self->trackEnded();
+    }, Qt::QueuedConnection);
 }

@@ -43,20 +43,27 @@ void PlaybackQueue::next() {
         return;
     }
     m_currentIndex++;
+    m_paused = false;
     m_backend->play(m_tracks[m_currentIndex].filePath);
     emit trackChanged(m_tracks[m_currentIndex]);
+    emit playbackStateChanged(true);
+    Database::instance().recordPlay(m_tracks[m_currentIndex].id);
 }
 
 void PlaybackQueue::previous() {
     if (m_currentIndex <= 0) return;
     m_currentIndex--;
+    m_paused = false;
     m_backend->play(m_tracks[m_currentIndex].filePath);
     emit trackChanged(m_tracks[m_currentIndex]);
+    emit playbackStateChanged(true);
+    Database::instance().recordPlay(m_tracks[m_currentIndex].id);
 }
 
 void PlaybackQueue::playAt(int index) {
     if (index < 0 || index >= m_tracks.size()) return;
     m_currentIndex = index;
+    m_paused = false;
     m_backend->play(m_tracks[m_currentIndex].filePath);
     emit trackChanged(m_tracks[m_currentIndex]);
     emit playbackStateChanged(true);

@@ -22,9 +22,6 @@ public:
 	qint64 duration() override;
 	bool isPlaying() override;
 
-signals:
-	void trackEnded();
-
 private:
 	libvlc_instance_t     *m_vlc    = nullptr;
 	libvlc_media_player_t *m_player = nullptr;
