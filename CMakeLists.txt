@@ -45,16 +45,22 @@ set(HEADERS
 		views/albumview.h
 )
 
-qt_add_executable(CupHolderMusic ${SOURCES} ${HEADERS})
+qt_add_executable(cupholdermusic ${SOURCES} ${HEADERS})
 
-target_link_libraries(CupHolderMusic PRIVATE
+target_link_libraries(cupholdermusic PRIVATE
 	Qt6::Core Qt6::Widgets Qt6::Sql
 	${TAGLIB_LIBRARIES}
 	${LIBVLC_LIBRARIES}
 )
 
-target_include_directories(CupHolderMusic PRIVATE
+target_include_directories(cupholdermusic PRIVATE
 	src
 	${TAGLIB_INCLUDE_DIRS}
 	${LIBVLC_INCLUDE_DIRS}
 )
+
+install(TARGETS cupholdermusic
+		RUNTIME DESTINATION bin)
+
+install(FILES resources/cupholdermusic.desktop
+		DESTINATION share/applications)
