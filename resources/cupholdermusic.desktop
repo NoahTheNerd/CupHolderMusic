@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=CupHolderMusic
+Comment=A Qt6 music player with CD support
+Exec=cupholdermusic
+Icon=cupholdermusic
+Terminal=false
+Categories=AudioVideo;Audio;Player;Music;
